@@ -71,14 +71,7 @@ function App() {
 
           <button onClick={signOut}>Sign out</button>
 
-          
-          
-
-      
-    
-          <p>Email: 
-          </p>
-          <p>{user.email}</p>
+  
 
           <button onClick={printUserEmail}>Print Attributes</button>
 
