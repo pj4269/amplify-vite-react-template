@@ -70,9 +70,19 @@ function App() {
 
           <button onClick={signOut}>Sign out</button>
 
-          <h1>Hello {user.username}  </h1>
 
+          {user && (
+        <>
+          <h1>Hello {user.username}</h1>
           <button onClick={printUserEmail}>Print Attributes</button>
+        </>
+      )}
+
+
+
+
+
+
 
 
     </main>
