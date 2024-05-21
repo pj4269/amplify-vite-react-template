@@ -47,7 +47,7 @@ function App() {
 
     
     <Authenticator>
-      
+      {({ signOut, user }) => (
 
 
     <main>
@@ -69,21 +69,18 @@ function App() {
         </a>
       </div>
 
-        
-          
+          <button onClick={signOut}>Sign out</button>
 
-      
-    
-          <p>Email: 
-          </p>
-      
+          <h1>Hello {user.username}   </h1>
+          
 
           <button onClick={printUserEmail}>Print Attributes</button>
 
 
     </main>
 
-  
+    
+)}
 </Authenticator>
 
   );
