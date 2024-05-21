@@ -1,10 +1,12 @@
 
 import { Authenticator } from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css'
+//import '@aws-amplify/ui-react/styles.css'
 
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import { fetchUserAttributes } from '@aws-amplify/auth';
+
 
 const client = generateClient<Schema>();
 
@@ -17,6 +19,15 @@ function App() {
     });
   }, []);
 
+  const printUserEmail = async () => {
+    try {
+      const userAttributes = await fetchUserAttributes();
+      console.log('Email:', userAttributes.email);
+    }
+    catch (e) { console.log(e); }
+  };
+
+
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
@@ -25,16 +36,22 @@ function App() {
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
+  //console.log('User email:', user.attributes.email);
+  
+
 
   
   return (
     
+ 
+
+    
     <Authenticator>
-      // user was never used = error
-      {({ signOut }) => (
+      {({ signOut, user }) => (
+
 
     <main>
-      <h1> Testing at 5:01 pm </h1>
+      <h1> Testing at 6:10 pm </h1>
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
@@ -42,7 +59,8 @@ function App() {
           <li onClick={() => deleteTodo(todo.id)}
           key={todo.id}>{todo.content}</li>
         ))}
-      </ul>
+      </ul>      
+
       <div>
         🥳 App successfully hosted. Try creating a new todo.
         <br />
@@ -52,6 +70,18 @@ function App() {
       </div>
 
           <button onClick={signOut}>Sign out</button>
+
+          <h1>Hello {user.username}   </h1>
+          
+
+      
+    
+          <p>Email: 
+          </p>
+          <p>{user.email}</p>
+
+          <button onClick={printUserEmail}>Print Attributes</button>
+
 
     </main>
 
