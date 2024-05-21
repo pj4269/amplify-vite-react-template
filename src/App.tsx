@@ -30,7 +30,8 @@ function App() {
   return (
     
     <Authenticator>
-      {({ signOut, user }) => (
+      // user was never used = error
+      {({ signOut }) => (
 
     <main>
       <h1> Testing at 5:01 pm </h1>
