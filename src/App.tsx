@@ -47,7 +47,6 @@ function App() {
 
     
     <Authenticator>
-      {({ signOut, user }) => (
 
 
     <main>
@@ -69,7 +68,6 @@ function App() {
         </a>
       </div>
 
-          <button onClick={signOut}>Sign out</button>
 
   
 
@@ -79,7 +77,6 @@ function App() {
     </main>
 
     
-)}
 </Authenticator>
 
   );
