@@ -1,6 +1,6 @@
 
 import { Authenticator } from '@aws-amplify/ui-react'
-//import '@aws-amplify/ui-react/styles.css'
+import '@aws-amplify/ui-react/styles.css'
 
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
@@ -71,8 +71,14 @@ function App() {
 
           <button onClick={signOut}>Sign out</button>
 
-          <h1>Hello {user.username}   </h1>
           
+          
+
+      
+    
+          <p>Email: 
+          </p>
+          <p>{user.email}</p>
 
           <button onClick={printUserEmail}>Print Attributes</button>
 
