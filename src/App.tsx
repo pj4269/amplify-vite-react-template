@@ -44,17 +44,7 @@ function App() {
   return (
     
  
-  return (
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-          <button onClick={printUserAttributes}>Print Attributes</button>
-        </main>
-      )}
-    </Authenticator>
-  );
-    
+
     <Authenticator hideSignUp loginMechanisms={['email']}>
       {({ signOut, user }) => (
 
@@ -80,7 +70,7 @@ function App() {
 
           <button onClick={signOut}>Sign out</button>
 
-          <h1>Hello {user.username}<   </h1>
+          <h1>Hello {user.username}  </h1>
 
           <button onClick={printUserEmail}>Print Attributes</button>
 
