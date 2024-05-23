@@ -14,10 +14,11 @@ const client = generateClient<Schema>();
 
 // Define the User interface
 interface User {
-  id: string;
+  id: number;
   username: string;
   // Add other properties as needed
 }
+
 
 
 interface MainContentProps {
