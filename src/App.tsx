@@ -6,7 +6,9 @@ import { generateClient } from 'aws-amplify/data';
 import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
-import type { AuthEventData } from '@aws-amplify/ui-components';
+//import type { AuthEventData } from '@aws-amplify/ui-components';
+
+
 
 // Remove unused import statement for CognitoUserInterface
 // import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
