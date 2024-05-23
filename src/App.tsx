@@ -12,10 +12,26 @@ import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12
 
 const client = generateClient<Schema>();
 // May 23: 12:52
+interface User {
+  id: string;
+  username: string;
+  // Add other properties as needed
+}
+
 interface MainContentProps {
-  user: CognitoUserInterface | null; // Use the CognitoUserInterface type for user
+  user: User | null;
+  //user: CognitoUserInterface | null; // Use the CognitoUserInterface type for user
   signOut: () => void; // Function type for signOut
 }
+
+
+
+
+
+
+
+
+
 
 function App() {
   return (
