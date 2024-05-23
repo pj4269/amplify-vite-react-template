@@ -13,16 +13,17 @@ import About from './components/About';
 const client = generateClient<Schema>();
 
 // Define the User interface
+/*
 interface User {
   id: number;
   username: string;
   // Add other properties as needed
-}
+}   */
 
 
 
 interface MainContentProps {
-  user: User | undefined; // Allow user to be undefined
+  user: any; //User | undefined; // Allow user to be undefined
   signOut: () => void;
 }
 
