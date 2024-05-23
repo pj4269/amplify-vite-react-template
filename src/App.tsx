@@ -30,8 +30,8 @@ interface MainContentProps {
 
 interface MainContentProps {
   user: any; //User | undefined; // Allow user to be undefined
-  signOut: ((data?: AuthEventData | undefined) => void) | undefined;
-}
+  signOut: any;//((data?: AuthEventData | undefined) => void) | undefined;
+}              //  signOut: (() => void) | undefined; 
 
 
 
