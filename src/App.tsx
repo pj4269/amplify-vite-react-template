@@ -7,7 +7,15 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 
+import { AuthState, CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
+
+
 const client = generateClient<Schema>();
+// May 23: 12:52
+interface MainContentProps {
+  user: CognitoUserInterface | null; // Use the CognitoUserInterface type for user
+  signOut: () => void; // Function type for signOut
+}
 
 function App() {
   return (
@@ -33,8 +41,9 @@ function App() {
     </Authenticator>
   );
 }
+const MainContent = ({ user, signOut }: MainContentProps) => {
 
-const MainContent = ({ user, signOut }) => {
+//const MainContent = ({ user, signOut }) => {
   const [todos, setTodos] = useState<Array<Schema['Todo']['type']>>([]);
 
   useEffect(() => {
