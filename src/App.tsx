@@ -7,31 +7,23 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 
-import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
-
+// Remove unused import statement for CognitoUserInterface
+// import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
 
 const client = generateClient<Schema>();
-// May 23: 12:52
+
+// Define the User interface
 interface User {
   id: string;
   username: string;
   // Add other properties as needed
 }
 
+// Define the MainContentProps interface
 interface MainContentProps {
   user: User | null;
-  //user: CognitoUserInterface | null; // Use the CognitoUserInterface type for user
-  signOut: () => void; // Function type for signOut
+  signOut: () => void;
 }
-
-
-
-
-
-
-
-
-
 
 function App() {
   return (
@@ -49,6 +41,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
+            {/* Pass user and signOut to MainContent */}
             <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
             <Route path="/about" element={<About />} />
           </Routes>
@@ -57,9 +50,8 @@ function App() {
     </Authenticator>
   );
 }
-const MainContent = ({ user, signOut }: MainContentProps) => {
 
-//const MainContent = ({ user, signOut }) => {
+const MainContent = ({ user, signOut }: MainContentProps) => {
   const [todos, setTodos] = useState<Array<Schema['Todo']['type']>>([]);
 
   useEffect(() => {
@@ -87,7 +79,8 @@ const MainContent = ({ user, signOut }: MainContentProps) => {
 
   return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
+      {/* Access user properties conditionally */}
+      <h1>{user?.username}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
@@ -105,6 +98,7 @@ const MainContent = ({ user, signOut }: MainContentProps) => {
 
       <button onClick={signOut}>Sign out</button>
 
+      {/* Access user properties conditionally */}
       {user && (
         <>
           <h1>Hello {user.username}</h1>
