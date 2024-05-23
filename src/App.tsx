@@ -7,7 +7,7 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 
-import { AuthState, CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
+import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
 
 
 const client = generateClient<Schema>();
