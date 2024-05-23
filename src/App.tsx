@@ -19,11 +19,12 @@ interface User {
   // Add other properties as needed
 }
 
-// Define the MainContentProps interface
+
 interface MainContentProps {
-  user: User | null;
+  user: User | undefined; // Allow user to be undefined
   signOut: () => void;
 }
+
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
 }
 
 const MainContent = ({ user, signOut }: MainContentProps) => {
+  
   const [todos, setTodos] = useState<Array<Schema['Todo']['type']>>([]);
 
   useEffect(() => {
