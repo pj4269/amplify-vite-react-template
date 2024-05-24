@@ -99,7 +99,7 @@ function Profile() {
     try {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
-        email
+        
       });
       setIsVerifyingEmail(true);
     } catch (error: any) {
