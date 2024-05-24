@@ -94,12 +94,12 @@ function Profile() {
     }
   };
 
-  const handleSendUserAttributeVerificationCode = async (email: string) => {
+  const handleSendUserAttributeVerificationCode = async () => {
 
     try {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
-        
+   
       });
       setIsVerifyingEmail(true);
     } catch (error: any) {
