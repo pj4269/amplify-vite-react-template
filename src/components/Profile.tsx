@@ -28,9 +28,12 @@ function Profile() {
         ...prevState,
         email: email
       }));
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error fetching email: ', error);
     }
+
+   
+    
   };
 
   const handleEditEmail = () => {
@@ -42,6 +45,7 @@ function Profile() {
       await handleUpdateUserAttribute('email', editedEmail);
       setIsEditingEmail(false);
     } catch (error) {
+    
       console.log('Error updating email: ', error);
       setErrorMessage(error.message); // Set error message here
     }
@@ -53,7 +57,9 @@ function Profile() {
     setIsEditingEmail(false);
   };
 
-  const handleUpdateUserAttribute = async (attributeKey, value) => {
+  
+  const handleUpdateUserAttribute = async (attributeKey: string, value: string) => { 
+
     try {
       const output = await updateUserAttribute({
         userAttribute: {
@@ -70,7 +76,8 @@ function Profile() {
     }
   };
 
-  const handleUpdateUserAttributeNextSteps = (output) => {
+  const handleUpdateUserAttributeNextSteps = (output: any) => { 
+
     const { nextStep } = output;
 
     switch (nextStep.updateAttributeStep) {
@@ -87,7 +94,8 @@ function Profile() {
     }
   };
 
-  const handleSendUserAttributeVerificationCode = async (email) => {
+  const handleSendUserAttributeVerificationCode = async (email: string) => {
+
     try {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
