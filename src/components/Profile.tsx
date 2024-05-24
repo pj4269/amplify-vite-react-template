@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchUserAttributes, updateUserAttribute, confirmUserAttribute, sendUserAttributeVerificationCode } from 'aws-amplify/auth';
 
 function Profile() {
@@ -9,7 +9,7 @@ function Profile() {
   });
 
   const [editedEmail, setEditedEmail] = useState('');
-  const [editedBio, setEditedBio] = useState(userInfo.bio);
+  
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
@@ -22,7 +22,8 @@ function Profile() {
   const fetchEmail = async () => {
     try {
       const user = await fetchUserAttributes();
-      const email = user.email;
+      //const email = user.email;
+      const email = user.email ?? ''; // Ensure email is not undefined
       setUserInfo(prevState => ({
         ...prevState,
         email: email
