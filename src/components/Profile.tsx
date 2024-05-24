@@ -93,7 +93,7 @@ function Profile() {
         break;
     }
   };
-
+/*
   const handleSendUserAttributeVerificationCode = async () => {
 
     try {
@@ -107,7 +107,21 @@ function Profile() {
       setErrorMessage(error.message); // Set error message here
     }
     
-  };
+  };  */
+  
+  
+  const handleSendUserAttributeVerificationCode = async (email: string) => {
+  try {
+    await sendUserAttributeVerificationCode({
+      userAttributeKey: 'email',
+      email // Using the email parameter here
+    });
+    setIsVerifyingEmail(true);
+  } catch (error: any) {
+    console.log(error);
+    setErrorMessage(error.message); // Set error message here
+  }                  };
+
   
   
   
