@@ -44,7 +44,7 @@ function Profile() {
     try {
       await handleUpdateUserAttribute('email', editedEmail);
       setIsEditingEmail(false);
-    } catch (error) {
+    } catch (error: any) {
     
       console.log('Error updating email: ', error);
       setErrorMessage(error.message); // Set error message here
@@ -70,7 +70,7 @@ function Profile() {
       handleUpdateUserAttributeNextSteps(output);
       // Send verification code to the new email
       await handleSendUserAttributeVerificationCode(value);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       throw error; // Rethrow the error to catch it in the save method
     }
@@ -102,11 +102,16 @@ function Profile() {
         email
       });
       setIsVerifyingEmail(true);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setErrorMessage(error.message); // Set error message here
     }
+    
   };
+  
+  
+  
+  
 
   const handleConfirmEmail = async () => {
     try {
@@ -120,7 +125,7 @@ function Profile() {
         ...prevState,
         email: editedEmail
       }));
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error confirming email: ', error);
       setIsVerifyingEmail(false);
       setErrorMessage(error.message); // Set error message here
