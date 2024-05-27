@@ -15,7 +15,7 @@ function Profile() {
   });
 
   const [editedEmail, setEditedEmail] = useState<string>('');
-  
+
   const [isEditingEmail, setIsEditingEmail] = useState<boolean>(false);
   const [verificationCode, setVerificationCode] = useState<string>('');
   const [isVerifyingEmail, setIsVerifyingEmail] = useState<boolean>(false);
@@ -118,7 +118,13 @@ function Profile() {
         ...prevState,
         email: editedEmail
       }));
-    } catch (error: any) {
+
+      // Check if the email has been changed before sending the verification code
+      if (editedEmail !== userInfo.email) {
+        // Send verification code to the new email
+        await handleSendUserAttributeVerificationCode(editedEmail);
+      }
+    } catch (error) {
       console.log('Error confirming email: ', error);
       setIsVerifyingEmail(false);
       setErrorMessage(error.message); // Set error message here
