@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchUserAttributes, updateUserAttribute } from 'aws-amplify/auth';
 
 function ProfilePage() {
@@ -26,9 +26,7 @@ function ProfilePage() {
 
   const handleSave = async () => {
     try {
-      //await updateUserAttribute('email', editedEmail);
-      await updateUserAttribute({ email: editedEmail });
-      
+      await updateUserAttribute({ email: editedEmail }, {});
       setIsEditing(false);
       // Update userInfo with the edited email
       setUserInfo(prevState => ({
