@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchUserAttributes, updateUserAttribute, confirmUserAttribute, sendUserAttributeVerificationCode, AuthSendUserAttributeVerificationCodeInput } from 'aws-amplify/auth';
+import { fetchUserAttributes, updateUserAttribute, confirmUserAttribute, sendUserAttributeVerificationCode, SendUserAttributeVerificationCodeInput } from 'aws-amplify/auth';
 
 interface UserInfo {
   email: string;
@@ -81,7 +81,7 @@ function Profile() {
 
     switch (nextStep.updateAttributeStep) {
       case 'CONFIRM_ATTRIBUTE_WITH_CODE':
-        const codeDeliveryDetails = nextStep.codeDeliveryDetails;
+        //const codeDeliveryDetails = nextStep.codeDeliveryDetails;
         console.log(
           `Confirmation code was sent to ${editedEmail}.` // Use editedEmail instead of userInfo.email
         );
@@ -98,7 +98,7 @@ function Profile() {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
         email
-      } as AuthSendUserAttributeVerificationCodeInput);
+      } as SendUserAttributeVerificationCodeInput);
       setIsVerifyingEmail(true);
     } catch (error: any) {
       console.log(error);
