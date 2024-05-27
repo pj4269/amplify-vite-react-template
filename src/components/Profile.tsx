@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchUserAttributes } from 'aws-amplify/auth';
 
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState({ email: '' });
-  const [editedEmail, setEditedEmail] = useState('');
+
 
   const fetchEmail = async () => {
     try {
@@ -13,7 +13,7 @@ function ProfilePage() {
         ...prevState,
         email: email
       }));
-      setEditedEmail(email); // Update editedEmail with fetched email
+
     } catch (error) {
       console.log('Error fetching email: ', error);
     }
