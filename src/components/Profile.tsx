@@ -22,18 +22,15 @@ function Profile() {
   const fetchEmail = async () => {
     try {
       const user = await fetchUserAttributes();
-      //const email = user.email;
       const email = user.email ?? ''; // Ensure email is not undefined
       setUserInfo(prevState => ({
         ...prevState,
         email: email
       }));
-    } catch (error: any) {
+      setEditedEmail(email); // Update editedEmail with fetched email
+    } catch (error) {
       console.log('Error fetching email: ', error);
     }
-
-   
-    
   };
 
   const handleEditEmail = () => {
@@ -44,8 +41,7 @@ function Profile() {
     try {
       await handleUpdateUserAttribute('email', editedEmail);
       setIsEditingEmail(false);
-    } catch (error: any) {
-    
+    } catch (error) {
       console.log('Error updating email: ', error);
       setErrorMessage(error.message); // Set error message here
     }
@@ -57,9 +53,7 @@ function Profile() {
     setIsEditingEmail(false);
   };
 
-  
-  const handleUpdateUserAttribute = async (attributeKey: string, value: string) => { 
-
+  const handleUpdateUserAttribute = async (attributeKey, value) => {
     try {
       const output = await updateUserAttribute({
         userAttribute: {
@@ -70,21 +64,20 @@ function Profile() {
       handleUpdateUserAttributeNextSteps(output);
       // Send verification code to the new email
       await handleSendUserAttributeVerificationCode(value);
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
       throw error; // Rethrow the error to catch it in the save method
     }
   };
 
-  const handleUpdateUserAttributeNextSteps = (output: any) => { 
-
+  const handleUpdateUserAttributeNextSteps = (output) => {
     const { nextStep } = output;
 
     switch (nextStep.updateAttributeStep) {
       case 'CONFIRM_ATTRIBUTE_WITH_CODE':
         const codeDeliveryDetails = nextStep.codeDeliveryDetails;
         console.log(
-          `Confirmation code was sent to ${codeDeliveryDetails?.deliveryMedium}.`
+          `Confirmation code was sent to ${editedEmail}.` // Use editedEmail instead of userInfo.email
         );
         // Collect the confirmation code from the user and pass to confirmUserAttribute.
         break;
@@ -93,39 +86,19 @@ function Profile() {
         break;
     }
   };
-/*
-  const handleSendUserAttributeVerificationCode = async () => {
 
+  const handleSendUserAttributeVerificationCode = async (email) => {
     try {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
-   
+        email
       });
       setIsVerifyingEmail(true);
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
       setErrorMessage(error.message); // Set error message here
     }
-    
-  };  */
-  
-  
-  const handleSendUserAttributeVerificationCode = async (email: string) => {
-  try {
-    await sendUserAttributeVerificationCode({
-      userAttributeKey: 'email',
-      email // Using the email parameter here
-    });
-    setIsVerifyingEmail(true);
-  } catch (error: any) {
-    console.log(error);
-    setErrorMessage(error.message); // Set error message here
-  }                  };
-
-  
-  
-  
-  
+  };
 
   const handleConfirmEmail = async () => {
     try {
@@ -139,7 +112,7 @@ function Profile() {
         ...prevState,
         email: editedEmail
       }));
-    } catch (error: any) {
+    } catch (error) {
       console.log('Error confirming email: ', error);
       setIsVerifyingEmail(false);
       setErrorMessage(error.message); // Set error message here
