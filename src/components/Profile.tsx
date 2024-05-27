@@ -1,19 +1,25 @@
 import { useState, useEffect } from 'react';
-import { fetchUserAttributes, updateUserAttribute, confirmUserAttribute, sendUserAttributeVerificationCode } from 'aws-amplify/auth';
+import { fetchUserAttributes, updateUserAttribute, confirmUserAttribute, sendUserAttributeVerificationCode, AuthSendUserAttributeVerificationCodeInput } from 'aws-amplify/auth';
+
+interface UserInfo {
+  email: string;
+  bio: string;
+  // Add more user info as needed
+}
 
 function Profile() {
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<UserInfo>({
     email: '',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     // Add more user info as needed
   });
 
-  const [editedEmail, setEditedEmail] = useState('');
+  const [editedEmail, setEditedEmail] = useState<string>('');
   
-  const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [verificationCode, setVerificationCode] = useState('');
-  const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [isEditingEmail, setIsEditingEmail] = useState<boolean>(false);
+  const [verificationCode, setVerificationCode] = useState<string>('');
+  const [isVerifyingEmail, setIsVerifyingEmail] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     fetchEmail();
@@ -28,7 +34,7 @@ function Profile() {
         email: email
       }));
       setEditedEmail(email); // Update editedEmail with fetched email
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error fetching email: ', error);
     }
   };
@@ -41,7 +47,7 @@ function Profile() {
     try {
       await handleUpdateUserAttribute('email', editedEmail);
       setIsEditingEmail(false);
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error updating email: ', error);
       setErrorMessage(error.message); // Set error message here
     }
@@ -53,7 +59,7 @@ function Profile() {
     setIsEditingEmail(false);
   };
 
-  const handleUpdateUserAttribute = async (attributeKey, value) => {
+  const handleUpdateUserAttribute = async (attributeKey: string, value: string) => {
     try {
       const output = await updateUserAttribute({
         userAttribute: {
@@ -64,13 +70,13 @@ function Profile() {
       handleUpdateUserAttributeNextSteps(output);
       // Send verification code to the new email
       await handleSendUserAttributeVerificationCode(value);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       throw error; // Rethrow the error to catch it in the save method
     }
   };
 
-  const handleUpdateUserAttributeNextSteps = (output) => {
+  const handleUpdateUserAttributeNextSteps = (output: any) => {
     const { nextStep } = output;
 
     switch (nextStep.updateAttributeStep) {
@@ -87,14 +93,14 @@ function Profile() {
     }
   };
 
-  const handleSendUserAttributeVerificationCode = async (email) => {
+  const handleSendUserAttributeVerificationCode = async (email: string) => {
     try {
       await sendUserAttributeVerificationCode({
         userAttributeKey: 'email',
         email
-      });
+      } as AuthSendUserAttributeVerificationCodeInput);
       setIsVerifyingEmail(true);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setErrorMessage(error.message); // Set error message here
     }
@@ -112,7 +118,7 @@ function Profile() {
         ...prevState,
         email: editedEmail
       }));
-    } catch (error) {
+    } catch (error: any) {
       console.log('Error confirming email: ', error);
       setIsVerifyingEmail(false);
       setErrorMessage(error.message); // Set error message here
