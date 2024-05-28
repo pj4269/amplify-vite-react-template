@@ -119,7 +119,11 @@ function Profile() {
         email: editedEmail
       }));
 
-
+      // Check if the email has been changed before sending the verification code
+      if (editedEmail !== userInfo.email) {
+        // Send verification code to the new email
+        await handleSendUserAttributeVerificationCode(editedEmail);
+      }
 
   };
 

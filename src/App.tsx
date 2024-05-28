@@ -7,6 +7,7 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 import Profile from './components/Profile';
+import Test2 from './components/Test'
 //import type { AuthEventData } from '@aws-amplify/ui-components';
 
 
@@ -55,14 +56,18 @@ function App() {
               <li>
                 <Link to="/about">About</Link>
               </li>              
-                            
+              <li>
+                <Link to="/test">Test</Link>
+              </li>                             
             </ul>
           </nav>
           <Routes>
             {/* Pass user and signOut to MainContent */}
             <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
-            {<Route path="/profile" element={<Profile/>} /> }
+            <Route path="/profile" element={<Profile/>} /> 
             <Route path="/about" element={<About />} />
+            <Route path="/test" element={<Test2 />} />
+
           </Routes>
         </Router>
       )}
