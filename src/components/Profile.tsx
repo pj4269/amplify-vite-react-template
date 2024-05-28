@@ -107,7 +107,7 @@ function Profile() {
   };
 
   const handleConfirmEmail = async () => {
-    try {
+   
       await confirmUserAttribute({
         userAttributeKey: 'email',
         confirmationCode: verificationCode
@@ -119,16 +119,8 @@ function Profile() {
         email: editedEmail
       }));
 
-      // Check if the email has been changed before sending the verification code
-      if (editedEmail !== userInfo.email) {
-        // Send verification code to the new email
-        await handleSendUserAttributeVerificationCode(editedEmail);
-      }
-    } catch (error) {
-      console.log('Error confirming email: ', error);
-      setIsVerifyingEmail(false);
-      setErrorMessage(error.message); // Set error message here
-    }
+
+
   };
 
   return (
