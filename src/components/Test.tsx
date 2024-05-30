@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchUserAttributes, updateUserAttribute } from 'aws-amplify/auth';
-import {  confirmUserAttribute, type ConfirmUserAttributeInput } from 'aws-amplify/auth';
+import {  confirmUserAttribute} from 'aws-amplify/auth';  // type ConfirmUserAttributeInput 
 
 function Test2() {
   const [currentEmail, setCurrentEmail] = useState('');
@@ -24,7 +24,7 @@ function Test2() {
   
   // 2. When the button is click: NewEmail becomes the input
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewEmail(e.target.value);
   };
   
