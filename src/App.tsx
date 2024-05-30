@@ -7,7 +7,7 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 import Profile from './components/Profile';
-import ProfileUpdate from './components/Profile_Update'
+import ProfileUpdate from './components/ProfileUpdate'
 import DeleteAcc from './components/Delete'
 //import type { AuthEventData } from '@aws-amplify/ui-components';
 
