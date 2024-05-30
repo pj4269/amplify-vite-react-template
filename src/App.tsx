@@ -7,7 +7,7 @@ import { fetchUserAttributes } from '@aws-amplify/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 import Profile from './components/Profile';
-import Test2 from './components/Test'
+import ProfileUpdate from './components/Profile_Update'
 import DeleteAcc from './components/Delete'
 //import type { AuthEventData } from '@aws-amplify/ui-components';
 
@@ -70,7 +70,7 @@ function App() {
             <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
             <Route path="/profile" element={<Profile/>} /> 
             <Route path="/about" element={<About />} />
-            <Route path="/test" element={<Test2 />} />
+            <Route path="/test" element={<ProfileUpdate />} />
             <Route path="/delete" element={<DeleteAcc />} />            
             
             
