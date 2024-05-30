@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,  ChangeEvent  } from 'react';
 import { fetchUserAttributes, updateUserAttribute } from 'aws-amplify/auth';
 import {  confirmUserAttribute} from 'aws-amplify/auth';  // type ConfirmUserAttributeInput 
 
