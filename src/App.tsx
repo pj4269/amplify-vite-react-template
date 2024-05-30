@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './components/About';
 import Profile from './components/Profile';
 import Test2 from './components/Test'
+import DeleteAcc from './components/Delete'
 //import type { AuthEventData } from '@aws-amplify/ui-components';
 
 
@@ -41,7 +42,7 @@ interface MainContentProps {
 
 function App() {
   return (
-    <Authenticator hideSignUp loginMechanisms={['email']}>
+    <Authenticator  loginMechanisms={['email']}>
       {({ signOut, user }) => (
         <Router>
           <nav>
@@ -51,14 +52,17 @@ function App() {
               </li>
 
               <li>
-                {<Link to="/profile">Profile</Link> }
+                <Link to="/profile">Profile</Link> 
               </li>
               <li>
                 <Link to="/about">About</Link>
               </li>              
               <li>
-                <Link to="/test">Test</Link>
-              </li>                             
+                <Link to="/test">Profile Update</Link>
+              </li> 
+              <li>
+                <Link to="/delete">Delete</Link>
+              </li>                                           
             </ul>
           </nav>
           <Routes>
@@ -67,6 +71,10 @@ function App() {
             <Route path="/profile" element={<Profile/>} /> 
             <Route path="/about" element={<About />} />
             <Route path="/test" element={<Test2 />} />
+            <Route path="/delete" element={<DeleteAcc />} />            
+            
+            
+      
 
           </Routes>
         </Router>
