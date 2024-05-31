@@ -1,13 +1,15 @@
 import { useState, useEffect,  ChangeEvent  } from 'react';
 import { fetchUserAttributes, updateUserAttribute } from 'aws-amplify/auth';
 import {  confirmUserAttribute} from 'aws-amplify/auth';  // type ConfirmUserAttributeInput 
+import validator from 'validator'; // Import validator.js
+
 
 function ProfileUpdate() {
   const [currentEmail, setCurrentEmail] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
   const [message, setMessage] = useState('')
-
+  const [errorMessage, seterrorMessage] = useState('')
   // 1. fetching user info
   const fetchCurrentUserEmail = async () => {
     try {
@@ -31,9 +33,34 @@ function ProfileUpdate() {
   
   // 3. Update User Attribute : 
   const handleUpdateUserAttribute = async (attributeKey: string, value: string) => {
+   
+    /* 
+    const emailRegex =  /^[^\s@]{3,24}@[^\s@]{1,64}\.[^\s@]{2,6}$/  // /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+   
+    if (!emailRegex.test(value)) {
+      alert('Please enter a valid email address.');
+      console.log("email is not updated");
+      return;
+    }    */
+    
+    
+     if (!validator.isEmail(value)) { // Validate email using validator.js
+      //alert('Please enter a valid email address.');
+      seterrorMessage('Please enter a valid email address.');
+      setMessage('');
+      console.log("email is not updated");
+      return;
+    }
+   
+    
+    
+    else
+    {
+    seterrorMessage("");
     setMessage(`Confirmation code was sent to ${newEmail}.`);
     
-    alert(`Confirmation code was sent to ${newEmail}.`);
+    //alert(`Confirmation code was sent to ${newEmail}.`);    
     
     try {
       const output = await updateUserAttribute({
@@ -49,6 +76,8 @@ function ProfileUpdate() {
     } catch (error: any) {
       console.log(error);
       throw error; // Rethrow the error to catch it in the save method
+    }
+    
     }
   };
 
@@ -89,7 +118,7 @@ function ProfileUpdate() {
           placeholder="Enter new email"
         />
         <button onClick={() => handleUpdateUserAttribute('email', newEmail)}>Update Email</button>
-        <b>{message}</b>
+       
       </div>
       <div>
         <input
@@ -99,6 +128,10 @@ function ProfileUpdate() {
           placeholder="Enter confirmation code"
         />
         <button onClick={handleConfirmUserAttribute}>Confirm Change</button>
+        <div>  <b>{message}</b>
+               {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} </div>
+        
+        
       </div>
     </div>
   );

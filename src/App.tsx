@@ -9,6 +9,9 @@ import About from './components/About';
 import Profile from './components/Profile';
 import ProfileUpdate from './components/ProfileUpdate'
 import DeleteAcc from './components/Delete'
+
+import ChangePasswordForm from './components/PasswordUpdate'
+
 //import type { AuthEventData } from '@aws-amplify/ui-components';
 
 
@@ -62,7 +65,10 @@ function App() {
               </li> 
               <li>
                 <Link to="/delete">Delete</Link>
-              </li>                                           
+              </li>  
+              <li>
+                <Link to="/password">Password Update</Link>
+              </li>                                                         
             </ul>
           </nav>
           <Routes>
@@ -72,7 +78,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/test" element={<ProfileUpdate />} />
             <Route path="/delete" element={<DeleteAcc />} />            
-            
+            <Route path="/password" element={<ChangePasswordForm />} />                        
             
       
 
