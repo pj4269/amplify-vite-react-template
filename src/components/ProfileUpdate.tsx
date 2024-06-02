@@ -1,7 +1,8 @@
 import { useState, useEffect,  ChangeEvent  } from 'react';
 import { fetchUserAttributes, updateUserAttribute } from 'aws-amplify/auth';
 import {  confirmUserAttribute} from 'aws-amplify/auth';  // type ConfirmUserAttributeInput 
-import validator from 'validator'; // Import validator.js
+// @ts-ignore   
+import validator from 'validator'; // // @ts-ignore surpasses "data type" error related to TypeScript
 
 
 function ProfileUpdate() {
