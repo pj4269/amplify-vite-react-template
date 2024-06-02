@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import zxcvbn from 'zxcvbn'; // Importing zxcvbn
+// @ts-ignore   
+import zxcvbn from 'zxcvbn'; // // @ts-ignore -> will surpass the Type related errors
 import {
   Flex,
   Heading,
@@ -62,7 +63,7 @@ export const ChangePasswordForm: React.FC = () => {
         confirmPassword: '',
       });
       setSuccessMessage('Password changed successfully');
-    } catch (error) {
+    } catch (error: any) {
       setErrorMessage(error.message);
     }
   };
