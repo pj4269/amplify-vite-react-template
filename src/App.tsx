@@ -12,37 +12,70 @@ import DeleteAcc from './components/Delete'
 
 import ChangePasswordForm from './components/PasswordUpdate'
 
-//import type { AuthEventData } from '@aws-amplify/ui-components';
-
-
-
-// Remove unused import statement for CognitoUserInterface
-// import { CognitoUserInterface } from '@aws-amplify/ui-components'; // May 23: 12:52 pm
 
 const client = generateClient<Schema>();
 
-// Define the User interface
-/*
-interface User {
-  id: number;
-  username: string;
-  // Add other properties as needed
-}  
 
-
-
-interface MainContentProps {
-  user: any; //User | undefined; // Allow user to be undefined
-  signOut: () => void;
-}  */
 
 interface MainContentProps {
   user: any; //User | undefined; // Allow user to be undefined
   signOut: any;//((data?: AuthEventData | undefined) => void) | undefined;
 }              //  signOut: (() => void) | undefined; 
 
+function App() {
+  return (
+    <Authenticator loginMechanisms={['email']}>
+      {({ signOut, user }) => (
+        <Router>
+        
+        <div style={{ position: 'fixed', top: 10,  left: 400, width: '50%',zIndex: 999, justifyContent: 'center'  }}> {/* Fix the navigation bar at the top */}
+        
+          <nav style={{ width: '560px' }}>
 
+            <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none', padding: 0 }}>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/">Main</Link>
+              </li>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/about">About</Link>
+              </li>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/test">Profile Update</Link>
+              </li>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/delete">Delete</Link>
+              </li>
+              <li style={{ margin: '0 1px' }}>
+                <Link to="/password">Password Update</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        
+        <div style={{ paddingTop: '60px', paddingLeft: '280px', paddingRight: '280px', textAlign: 'center' }}> {/* Add padding top and sides to the content to avoid overlapping */}
 
+          <Routes>
+            {/* Pass user and signOut to MainContent */}
+            <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
+            <Route path="/profile" element={<Profile/>} /> 
+            <Route path="/about" element={<About />} />
+            <Route path="/test" element={<ProfileUpdate />} />
+            <Route path="/delete" element={<DeleteAcc />} />            
+            <Route path="/password" element={<ChangePasswordForm />} />                        
+          </Routes>
+       </div> 
+                 
+        </Router>
+
+      )}
+    </Authenticator>
+  );
+}
+
+/*
 function App() {
   return (
     <Authenticator  loginMechanisms={['email']}>
@@ -72,7 +105,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
-            {/* Pass user and signOut to MainContent */}
+           
             <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
             <Route path="/profile" element={<Profile/>} /> 
             <Route path="/about" element={<About />} />
@@ -88,6 +121,7 @@ function App() {
     </Authenticator>
   );
 }
+*/
 
 const MainContent = ({ user, signOut }: MainContentProps) => {
   

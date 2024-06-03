@@ -1,6 +1,10 @@
+
+
+
+
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
+  background: linear-gradient(180deg, #90caf9, #ffffff);
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -8,6 +12,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+
+
+
 
 main {
   display: flex;
@@ -22,18 +30,25 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #448aff; /* Darker blue background */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
   color: white;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: #2979ff; /* Slightly lighter blue on hover */
+  border-color: #2979ff; /* Border color changes on hover */
 }
+
+
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+
 
 ul {
   padding-inline-start: 0;
@@ -43,23 +58,29 @@ ul {
   display: flex;
   flex-direction: column;
   margin: 8px 0;
-  border: 1px solid black;
+  border: 1px solid #2C3E50; /* Dark blue border */
   gap: 1px;
-  background-color: black;
+  background-color: #446CB3; /* Lighter blue background */
   border-radius: 8px;
   overflow: auto;
 }
 
 li {
-  background-color: white;
+  background-color: #5D8AA8; /* Light blue */
   padding: 8px;
+  color: white; /* White text */
 }
 
 li:hover {
-  background: #dadbf9;
+  background: #72A6E0; /* Lighter blue on hover */
 }
 
 a {
+  color: white; /* Set the text color to white */
   font-weight: 800;
   text-decoration: none;
 }
+
+
+
+
