@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios'; // Ensure you've installed axios
 
 function SendMyNumber() {
-  const [numberToSend, setNumberToSend] = useState(15);
+  const numberToSend = 100;
   const [result, setResult] = useState(null);
 
   const handleClick = async () => {
@@ -17,6 +17,9 @@ function SendMyNumber() {
      catch (error) {
       console.error('Error sending number:', error);
     }
+    
+    
+    
   };
 
   return (
