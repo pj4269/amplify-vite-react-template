@@ -9,6 +9,8 @@ import About from './components/About';
 import Profile from './components/Profile';
 import ProfileUpdate from './components/ProfileUpdate'
 import DeleteAcc from './components/Delete'
+import SendMyNumber from './components/SendNumber'
+
 
 import ChangePasswordForm from './components/PasswordUpdate'
 
@@ -27,6 +29,12 @@ function App() {
     <Authenticator loginMechanisms={['email']}>
       {({ signOut, user }) => (
         <Router>
+        
+      <div> Number sent from React
+           <SendMyNumber/>
+        
+      </div>
+        
         
         <div style={{ position: 'fixed', top: 10,  left: 400, width: '50%',zIndex: 999, justifyContent: 'center'  }}> {/* Fix the navigation bar at the top */}
         
@@ -75,53 +83,7 @@ function App() {
   );
 }
 
-/*
-function App() {
-  return (
-    <Authenticator  loginMechanisms={['email']}>
-      {({ signOut, user }) => (
-        <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Main</Link>
-              </li>
 
-              <li>
-                <Link to="/profile">Profile</Link> 
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>              
-              <li>
-                <Link to="/test">Profile Update</Link>
-              </li> 
-              <li>
-                <Link to="/delete">Delete</Link>
-              </li>  
-              <li>
-                <Link to="/password">Password Update</Link>
-              </li>                                                         
-            </ul>
-          </nav>
-          <Routes>
-           
-            <Route path="/" element={<MainContent user={user} signOut={signOut} />} />
-            <Route path="/profile" element={<Profile/>} /> 
-            <Route path="/about" element={<About />} />
-            <Route path="/test" element={<ProfileUpdate />} />
-            <Route path="/delete" element={<DeleteAcc />} />            
-            <Route path="/password" element={<ChangePasswordForm />} />                        
-            
-      
-
-          </Routes>
-        </Router>
-      )}
-    </Authenticator>
-  );
-}
-*/
 
 const MainContent = ({ user, signOut }: MainContentProps) => {
   
