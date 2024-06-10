@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import { useEffect, useState } from "react";
+
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 //import { useEffect, useState } from "react";
@@ -134,7 +134,7 @@ async function getItem() {
     });
     const response = await restOperation.response;
     console.log('GET call succeeded: ', response);
-  } catch (error) {
+  } catch (error: any) {
     if (error.response && error.response.body) {
       console.log('GET call failed: ', JSON.parse(error.response.body));
     } else {
