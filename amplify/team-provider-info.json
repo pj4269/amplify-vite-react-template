@@ -9,6 +9,17 @@
       "UnauthRoleName": "amplify-amplifyvitereact-dev-63153-unauthRole",
       "StackName": "amplify-amplifyvitereact-dev-63153",
       "StackId": "arn:aws:cloudformation:us-west-2:711141261525:stack/amplify-amplifyvitereact-dev-63153/4b8ea940-2e40-11ef-b20a-06b6882c5bb9"
+    },
+    "categories": {
+      "function": {
+        "amplifylambdajun19": {
+          "deploymentBucketName": "amplify-amplifyvitereact-dev-63153-deployment",
+          "s3Key": "amplify-builds/amplifylambdajun19-556552386e6e59483537-build.zip"
+        }
+      },
+      "api": {
+        "apijun19": {}
+      }
     }
   }
 }

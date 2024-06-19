@@ -1,0 +1,33 @@
+
+1.  amplify init 
+
+
+2.    git init                      : worked
+			git add *
+			git commit -m "amplify init"
+			git push -u origin main
+
+3.    amplify add api                : apijun19
+                                     : /customers/{customerId}
+                                     : amplifylambdajun19
+                                     
+      
+      amplify push                   : now you should see your API in Gateway
+                                                               Function in Lambda                             
+                                                               
+      python : changed from Pythpon 3.8 to Python 3.9  -( python--version) -> 
+     
+                                                            update a] Pipfile
+                                                                    b] ../amplify/backend/function/amplifyjun05/amplifyjun05-cloudformation-template.json  
+            : REST API endpoint: https://ravg77rp9k.execute-api.us-west-2.amazonaws.com/dev
+
+            :  Lambda edit:  index.my_handler      # change handler.py to my_handler.py  
+                                                   # watch for CloudWatch for any errors!   
+                                                                                                                                                                         
+4. 
+2.    git init                     
+			git add *
+			git commit -m "amplify add api"
+			git push -u origin main                                                                                                                       
+                                                                                                                        
+                                                                                                                        
